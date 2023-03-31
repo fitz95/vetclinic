@@ -12,25 +12,32 @@ SELECT * FROM animals WHERE weight_kg BETWEEN 10.4 AND 17.3;
 -- edit Table 
 START TRANSACTION;
 ALTER TABLE animals RENAME COLUMN species TO unspecified;
+SELECT species from animals;
 ROLLBACK;
+SELECT species from animals;
 
 BEGIN TRANSACTION;
 UPDATE animals SET species = 'digimon' WHERE name LIKE '%mon';
 UPDATE animals SET species = 'pokemon' WHERE species IS NULL;
+SELECT species from animals;
 COMMIT TRANSACTION;
 
 
 BEGIN;
 delete from animals;
+SELECT species from animals;
 ROLLBACK;
+SELECT species from animals;
 
-BEGIN;
-DELETE FROM animals WHERE date_of_birth > '2022-01-01';
 
 BEGIN;
 DELETE FROM animals WHERE date_of_birth > '2022-01-01';
 SAVEPOINT animal_save1;
 select * from animals
+ update animals set weight_kg =weight_kg * -1;
+ Rollback to savepoint animal_save1;
+ update animals set weight_kg =weight_kg * -1 where weight_kg <0;
+commit;
 
 COMMIT;
 
@@ -49,3 +56,4 @@ SELECT species, MIN(weight_kg) AS min_weight, MAX(weight_kg) AS max_weight FROM 
 SELECT species, AVG(escape_attempts) FROM animals
 WHERE date_of_birth BETWEEN '1990-01-01' AND '2020-01-01'
 GROUP BY species;
+
