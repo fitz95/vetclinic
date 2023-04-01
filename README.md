@@ -77,7 +77,8 @@ then locate postgresql folder
 
 ### Setup
 
-Clone this repository to your desired folder:
+In order to run this project you to first install postgresql and use either the sql terminal or the pgAdmin
+then run the queries from the clone file.
 
 
 ### Install
