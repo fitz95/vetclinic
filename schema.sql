@@ -28,6 +28,19 @@ CREATE TABLE species
     name VARCHAR(250)
 );
 
+--Modify animals table:
+ALTER TABLE animals DROP COLUMN species;  
+--Add column species_id which is a foreign key referencing species table
+ALTER TABLE animals
+ADD COLUMN species_id INT
+CONSTRAINT fk_animals_species
+REFERENCES species (id); 
+--Add column owner_id which is a foreign key referencing the owners table
+ALTER TABLE animals
+ADD COLUMN owner_id INT
+CONSTRAINT fk_animals_owners
+REFERENCES owners (id);
+
 -- create a table vets 
 CREATE TABLE vets(
     id serial primary key,
