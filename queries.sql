@@ -49,3 +49,38 @@ SELECT species, MIN(weight_kg) AS min_weight, MAX(weight_kg) AS max_weight FROM 
 SELECT species, AVG(escape_attempts) FROM animals
 WHERE date_of_birth BETWEEN '1990-01-01' AND '2020-01-01'
 GROUP BY species;
+
+-- display info from owner melody pond by join 
+SELECT  owners.full_name as owner_fullname , animals.name as animal_name from animals 
+INNER join owners on animals.owner_id=owners.id
+where owners.full_name ='Melody Pond';
+
+SELECT   animals.name as animal_name, species.name as species_name  from animals 
+inner join species on animals.species_id=species.id
+where species.name ='Pokemon';
+
+--display all owners even those with no animal
+SELECT   owners.full_name as owners_fullname , animals.name as animal_name from animals 
+full join owners on animals.owner_id=owners.id;
+
+--display by specie name and number of animals for each specie
+SELECT  species.name as species_name, count(animals.name) as animals_number from animals 
+inner join species on animals.species_id=species.id
+group by species.name;
+
+-- display jennifer orwell animals with specie digimon
+SELECT   owners.full_name as owners_fullname , animals.name as animal_name, species.name as species_name from animals 
+inner join owners on animals.owner_id=owners.id
+inner join species on animals.species_id=species.id
+where owners.full_name ='Jennifer Orwell' and species.name='Digimon';
+
+-- display dean winchester animals with no escape 
+SELECT  owners.full_name as owners_fullname , animals.name as animal_name, animals.escape_attempts from animals 
+inner join owners on animals.owner_id=owners.id
+where owners.full_name ='Dean Winchester'and animals.escape_attempts =0;
+
+-- display who owns the next animals 
+SELECT  owners.full_name as owners_fullname, count(animals.name) as animals_number from animals 
+full join owners on animals.owner_id=owners.id
+group by owners.full_name
+order by animals_number desc;
