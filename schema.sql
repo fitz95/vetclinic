@@ -13,6 +13,7 @@ CREATE TABLE animals (
 
 ALTER TABLE animals ADD COLUMN species VARCHAR(50);
 
+-- create a new table owners
 CREATE TABLE owners
 (
     id SERIAL  primary key,
@@ -20,8 +21,34 @@ CREATE TABLE owners
     age  INT
 );
 
+-- create a table species 
 CREATE TABLE species
 (
     id SERIAL primary key,
     name VARCHAR(250)
 );
+
+-- create a table vets 
+CREATE TABLE vets(
+    id serial primary key,
+    name TEXT ,
+    age  integer,
+	date_of_graduation date
+);
+
+-- create a helper table specializtion for the many to many relationship
+CREATE TABLE specializations(
+  id serial primary key, 
+  species_id int  references species(id) ,
+  vets_id int  references vets(id)
+);
+select * from specializations;
+
+-- create helper table visit for many to many relationship
+CREATE TABLE visits (
+     id serial primary key,
+     animals_id INTEGER references animals(id),
+     vets_id INTEGER references vets(id),
+    date_of_visit date
+);
+select * from visits;
