@@ -24,6 +24,7 @@
 <!-- PROJECT DESCRIPTION -->
 
 # 📖 [VET CLINIC DATABASE] <a name="about-project"></a>
+<img src='./vet-clinic-schema-diagram.png' />
 
 > Describe your project in 1 or 2 sentences.
 

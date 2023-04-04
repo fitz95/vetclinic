@@ -65,3 +65,6 @@ CREATE TABLE visits (
     date_of_visit date
 );
 select * from visits;
+
+--Add an email column to your owners table
+ALTER TABLE owners ADD COLUMN email VARCHAR(120);

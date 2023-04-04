@@ -139,4 +139,27 @@ inner join vets on vets.id=visits.vets_id
 left join specializations on specializations.vets_id=vets.id
 where specializations.species_id is  null;
 
--- specialty Maisy Smith consider getting? Look for the species she gets the most.
+-- Optimizing the database:
+
+-- query 1
+
+SELECT COUNT(*) FROM visits where animal_id = 4;
+
+-- optimise
+
+CREATE INDEX animal_id_index ON visits (animal_id);
+-- query 2
+
+SELECT * FROM visits where vet_id = 2;
+
+-- optimise
+
+CREATE INDEX vet_id_index ON visits (vet_id);
+--query 3
+
+SELECT * FROM owners where email = 'owner_18327@mail.com';
+
+-- optimise
+
+CREATE INDEX email_index ON owners (email);
+
